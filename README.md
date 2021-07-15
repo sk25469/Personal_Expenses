@@ -1,6 +1,6 @@
-# personal_expenses
+# Personal Expenses
 
-A new Flutter project.
+This Flutter app stores the amount of money spent during the week and displays it in a graphical way. We can create a new task or item to buy and also delete the items which we already bought.
 
 ## Getting Started
 
