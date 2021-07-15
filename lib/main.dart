@@ -42,12 +42,39 @@ class MyHomePage extends StatelessWidget {
             // ignore: sized_box_for_whitespace
             child: Container(
               width: double.infinity,
+              // ignore: prefer_const_constructors
               child: Text("Chart"),
             ),
             elevation: 6,
           ),
-          Card(
-            child: Text("List of TXN"),
+          // ignore: prefer_const_constructors
+          Column(
+            // ignore: prefer_const_constructors
+            children: transaction
+                .map(
+                  (tx) => Card(
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 20,
+                          ),
+                          child: Text(tx.amount.toString()),
+                          decoration: BoxDecoration(border: Border.all()),
+                          padding: const EdgeInsets.all(5),
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Text(tx.title),
+                            Text(tx.date.toString()),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ],
       ),
