@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './Model/Transaction.dart';
 
 void main() => runApp(MyApp());
@@ -37,7 +38,8 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Card(
             // ignore: sized_box_for_whitespace
@@ -64,7 +66,7 @@ class MyHomePage extends StatelessWidget {
                             vertical: 20,
                           ),
                           child: Text(
-                            tx.amount.toString(),
+                            'Rs ${tx.amount}',
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -79,20 +81,21 @@ class MyHomePage extends StatelessWidget {
                           ),
                           padding: const EdgeInsets.all(5),
                         ),
-                        // the title and time
+                        // the title and date
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               tx.title,
                               style: const TextStyle(
-                                fontSize: 14,
+                                fontSize: 16,
                                 color: Colors.black,
                               ),
                             ),
                             Text(
-                              tx.date.toString(),
+                              DateFormat.yMMMd().format(tx.date),
                               style: const TextStyle(
-                                fontSize: 14,
+                                fontSize: 10,
                                 color: Colors.grey,
                               ),
                             ),
