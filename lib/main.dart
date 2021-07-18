@@ -31,6 +31,11 @@ class MyHomePage extends StatelessWidget {
       title: "My new mechanical keyboard",
     ),
   ];
+
+  // remember that user inputs are always strings
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +43,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Card(
@@ -50,6 +55,32 @@ class MyHomePage extends StatelessWidget {
               child: Text("Chart"),
             ),
             elevation: 6,
+          ),
+          Card(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              // ignore: prefer_const_literals_to_create_immutables
+              children: <Widget>[
+                TextField(
+                  decoration: const InputDecoration(labelText: 'Title'),
+                  // onChanged: (val) => titleInput = val,
+                  controller: titleController,
+                ),
+                TextField(
+                  decoration: const InputDecoration(labelText: 'Amount'),
+                  controller: amountController,
+                ),
+                // onChanged: (amt) => amountInput = amt),
+                TextButton(
+                  style: TextButton.styleFrom(primary: Colors.purple),
+                  onPressed: () {
+                    print(titleController.text);
+                    print(amountController.text);
+                  },
+                  child: const Text('Add Transaction'),
+                )
+              ],
+            ),
           ),
           // ignore: prefer_const_constructors
           Column(
