@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:personal_expenses/Widgets/user_transactions.dart';
+
+import 'Model/Transaction.dart';
+import 'Widgets/new_transaction.dart';
+import 'Widgets/transactions_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,14 +18,67 @@ class MyApp extends StatelessWidget {
 }
 
 // ignore: use_key_in_widget_constructors
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   // remember that user inputs are always strings
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _userTransactions = [
+    Transaction(
+      amount: 69.420,
+      id: "1",
+      date: DateTime.now(),
+      title: "My new phone",
+    ),
+    Transaction(
+      amount: 420.69,
+      id: "2",
+      date: DateTime.now(),
+      title: "My new mechanical keyboard",
+    ),
+  ];
+
+  void _addNewTransaction(String txTitle, double txAmount) {
+    final newTx = Transaction(
+      title: txTitle,
+      amount: txAmount,
+      date: DateTime.now(),
+      id: DateTime.now().toString(),
+    );
+
+    setState(() {
+      _userTransactions.add(newTx);
+    });
+  }
+
+  void _startAddNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        // so that it doesn't close when we tap on the sheet
+        return GestureDetector(
+          onTap: () {},
+          child: NewTransaction(_addNewTransaction),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter App'),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () => _startAddNewTransaction(context),
+            icon: const Icon(Icons.add),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -39,9 +95,14 @@ class MyHomePage extends StatelessWidget {
               ),
               elevation: 6,
             ),
-            const UserTransactions(),
+            TransactionList(_userTransactions),
           ],
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () => _startAddNewTransaction(context),
       ),
     );
   }
