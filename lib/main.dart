@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:personal_expenses/Utils/pallete.dart';
 
 import 'Model/Transaction.dart';
@@ -15,6 +17,27 @@ class MyApp extends StatelessWidget {
       title: 'Personal Expenses',
       theme: ThemeData(
         primarySwatch: Palette.kToDark,
+        accentColor: Colors.amber,
+        fontFamily: 'QuickSand',
+
+        // to use  the same text theme for all the titles of the app
+        textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: const TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+        // to use the same text theme in all the app bars of the app
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: const TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+        ),
       ),
       home: MyHomePage(),
     );
