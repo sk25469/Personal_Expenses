@@ -14,7 +14,8 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('Rs. ${spendingAmt.toStringAsFixed(0)}'),
+        // a fitted box compels the object inside to just take the width as defined
+        FittedBox(child: Text('Rs. ${spendingAmt.toStringAsFixed(0)}')),
         const SizedBox(height: 5),
         // ignore: sized_box_for_whitespace
         Container(
