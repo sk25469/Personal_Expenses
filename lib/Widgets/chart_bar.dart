@@ -15,7 +15,14 @@ class ChartBar extends StatelessWidget {
     return Column(
       children: <Widget>[
         // a fitted box compels the object inside to just take the width as defined
-        FittedBox(child: Text('Rs. ${spendingAmt.toStringAsFixed(0)}')),
+        // ignore: sized_box_for_whitespace
+        Container(
+          // to make sure our bars are aligned
+          height: 20,
+          child: FittedBox(
+            child: Text('Rs. ${spendingAmt.toStringAsFixed(0)}'),
+          ),
+        ),
         const SizedBox(height: 5),
         // ignore: sized_box_for_whitespace
         Container(

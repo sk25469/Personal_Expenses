@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
+              button: const TextStyle(color: Colors.white),
             ),
         // to use the same text theme in all the app bars of the app
         appBarTheme: AppBarTheme(

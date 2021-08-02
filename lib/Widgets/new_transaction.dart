@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTransactionHandler;
@@ -43,7 +44,6 @@ class _NewTransactionState extends State<NewTransaction> {
         children: <Widget>[
           TextField(
             decoration: const InputDecoration(labelText: 'Title'),
-            // onChanged: (val) => titleInput = val,
             controller: titleController,
 
             // to add transaction when we press enter on keyboard
@@ -59,11 +59,42 @@ class _NewTransactionState extends State<NewTransaction> {
             // to add transaction when we press enter on keyboard
             onSubmitted: (_) => submitData(),
           ),
-          // onChanged: (amt) => amountInput = amt),
-          TextButton(
-            style: TextButton.styleFrom(primary: Colors.purple),
-            onPressed: submitData,
-            child: const Text('Add Transaction'),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 8, 0, 0),
+            child: Row(
+              children: [
+                const Text(
+                  'No date choosen',
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Choose Date',
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: ElevatedButton(
+              style:
+                  TextButton.styleFrom(primary: Theme.of(context).primaryColor),
+              onPressed: submitData,
+              child: Text(
+                'Add Transaction',
+                style:
+                    TextStyle(color: Theme.of(context).textTheme.button!.color),
+              ),
+            ),
           )
         ],
       ),
