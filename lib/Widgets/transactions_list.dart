@@ -4,9 +4,10 @@ import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
+  final Function deleteTransaction;
 
   // ignore: use_key_in_widget_constructors
-  const TransactionList(this.transactions);
+  const TransactionList(this.transactions, this.deleteTransaction);
   @override
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
@@ -54,7 +55,14 @@ class TransactionList extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     subtitle: Text(
-                        DateFormat.yMMMd().format(transactions[index].date)),
+                      DateFormat.yMMMd().format(transactions[index].date),
+                    ),
+                    trailing: IconButton(
+                      onPressed: () =>
+                          deleteTransaction(transactions[index].id),
+                      color: Theme.of(context).errorColor,
+                      icon: const Icon(Icons.delete),
+                    ),
                   ),
                 );
               },

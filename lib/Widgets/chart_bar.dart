@@ -20,7 +20,7 @@ class ChartBar extends StatelessWidget {
           // to make sure our bars are aligned
           height: 20,
           child: FittedBox(
-            child: Text('Rs. ${spendingAmt.toStringAsFixed(0)}'),
+            child: Text('Rs.${spendingAmt.toStringAsFixed(0)}'),
           ),
         ),
         const SizedBox(height: 5),
